@@ -1,66 +1,60 @@
-⬡ ServiceRegistry
+ServiceRegistry
+
 A developer portal for registering, managing, and monitoring services and their API endpoints in real time.
 
 📌 Features
-
-Service Management — Add, edit, delete and search services with owner and description
-Endpoint Catalog — Register API endpoints (GET/POST/PUT/DELETE) per service
-Real-time Health Checks — Ping endpoints, measure response time, detect UP/DOWN status
-Health Logs — View full history of health check results per endpoint
-Analytics Dashboard — SQL-powered insights: total services, avg response time, slowest APIs
-
-
+Service Management: Add, edit, delete, and search services with owner and description.
+Endpoint Catalog: Register API endpoints (GET/POST/PUT/DELETE) for each service.
+Real-time Health Checks: Ping endpoints, measure response time, detect UP/DOWN status.
+Health Logs: View full history of health check results per endpoint.
+Analytics Dashboard: SQL-powered insights — total services, average response time, slowest APIs.
 🛠️ Tech Stack
-LayerTechnologyLanguageJava (JDK 17+)UIJava SwingDatabaseMySQLConnectivityJDBCHTTP CallsJava HttpURLConnection
-
+Layer	Technology
+Language	Java (JDK 17+)
+UI	Java Swing
+Database	MySQL
+Connectivity	JDBC
+HTTP Calls	Java HttpURLConnection
 🗄️ Database Schema
-sqlservices       → id, name, owner, description, status, created_at
-endpoints      → id, service_id (FK), url, method
-health_logs    → id, endpoint_id (FK), status, status_code, response_time, checked_at
-dependencies   → id, service_id (FK), depends_on (FK)
-
+services: id, name, owner, description, status, created_at
+endpoints: id, service_id (FK), url, method
+health_logs: id, endpoint_id (FK), status, status_code, response_time, checked_at
+dependencies: id, service_id (FK), depends_on (FK)
 🚀 Getting Started
 Prerequisites
-
 Java JDK 17 or above
 MySQL 8.0+
 MySQL Connector/J JAR
-
-1. Clone the repository
-bashgit clone https://github.com/pujithabuchupalli/ServiceRegistry.git
+Steps
+Clone the repository
+git clone https://github.com/pujithabuchupalli/ServiceRegistry.git
 cd ServiceRegistry
-2. Setup the database
-sqlCREATE DATABASE service_registry;
+Setup the database
+CREATE DATABASE service_registry;
 
-Tables are auto-created on first run via DBConnection.initDB()
+Tables are auto-created on first run via DBConnection.initDB().
 
-3. Update credentials
+Update credentials
 Open DBConnection.java and update:
-javaprivate static final String URL  = "jdbc:mysql://localhost:3306/service_registry";
+private static final String URL  = "jdbc:mysql://localhost:3306/service_registry";
 private static final String USER = "root";
 private static final String PASS = "your_password";
-4. Compile and run
-bashjavac -cp .;mysql-connector-j.jar *.java
-java  -cp .;mysql-connector-j.jar Portal
+Compile and run
+javac -cp .;mysql-connector-j.jar *.java
+java -cp .;mysql-connector-j.jar Portal
 
-On Mac/Linux use : instead of ;
-
+On Mac/Linux, replace ; with : in classpath.
 
 📁 Project Structure
 ServiceRegistry/
 ├── DBConnection.java   → MySQL connection + auto table creation
 ├── Models.java         → Service, Endpoint, HealthLog model classes
-├── DAO.java            → All JDBC CRUD + SQL analytics queries
-├── Portal.java         → Swing UI (all 5 screens) + main()
+├── DAO.java            → JDBC CRUD + SQL analytics queries
+├── Portal.java         → Swing UI (all screens) + main()
 └── README.md
-
-🖥️ Screenshots
-ScreenDescriptionDashboardOverview with service counts and statusServicesAdd / Edit / Delete / Search servicesEndpointsManage API endpoints per serviceHealth LogsHistorical health check resultsAnalyticsAvg response time, slowest APIs
-
 💡 Key Highlights
-
-4 normalized tables with proper foreign key relationships and CASCADE deletes
-Prepared statements used throughout to prevent SQL injection
-SQL aggregates — COUNT, AVG, GROUP BY, JOIN across 3 tables for analytics
-Multithreaded health checks — HTTP calls run on background thread to keep UI responsive
-Dynamic search — real-time SQL LIKE query filtering as you type
+4 normalized tables with proper foreign key relationships and CASCADE deletes.
+Prepared statements used throughout to prevent SQL injection.
+SQL aggregates — COUNT, AVG, GROUP BY, JOIN across multiple tables for analytics.
+Multithreaded health checks — HTTP calls run on background thread to keep UI responsive.
+Dynamic search — real-time SQL LIKE query filtering as you type.
