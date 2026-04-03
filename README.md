@@ -43,9 +43,18 @@ A developer portal to register, manage, and monitor services and their API endpo
 - MySQL 8.0+  
 - MySQL Connector/J JAR  
 
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Java JDK 17+  
+- MySQL 8.0+  
+- MySQL Connector/J JAR  
+
 ### Steps
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/pujithabuchupalli/ServiceRegistry.git
 cd ServiceRegistry
@@ -54,8 +63,10 @@ CREATE DATABASE service_registry;
 
 Tables are auto-created on first run via DBConnection.initDB()
 
-Update credentials
-Open DBConnection.java and update:
+Update database credentials
+
+Open DBConnection.java and update the following:
+
 private static final String URL  = "jdbc:mysql://localhost:3306/service_registry";
 private static final String USER = "root";
 private static final String PASS = "your_password";
@@ -64,17 +75,3 @@ javac -cp .;mysql-connector-j.jar *.java
 java -cp .;mysql-connector-j.jar Portal
 
 On Mac/Linux, replace ; with : in classpath.
-
-📁 Project Structure
-ServiceRegistry/
-├── DBConnection.java   → MySQL connection + auto table creation
-├── Models.java         → Service, Endpoint, HealthLog model classes
-├── DAO.java            → JDBC CRUD + SQL analytics queries
-├── Portal.java         → Swing UI (all screens) + main()
-└── README.md
-💡 Key Highlights
-4 normalized tables with proper foreign key relationships and CASCADE deletes.
-Prepared statements used to prevent SQL injection.
-SQL aggregates: COUNT, AVG, GROUP BY, JOIN across multiple tables for analytics.
-Multithreaded health checks – HTTP calls run on background threads to keep UI responsive.
-Dynamic search – real-time SQL LIKE query filtering as you type.
