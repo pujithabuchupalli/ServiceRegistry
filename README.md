@@ -1,10 +1,10 @@
 ServiceRegistry
 
-A developer portal for registering, managing, and monitoring services and their API endpoints in real time.
+A developer portal to register, manage, and monitor services and their API endpoints in real time.
 
 📌 Features
 Service Management: Add, edit, delete, and search services with owner and description.
-Endpoint Catalog: Register API endpoints (GET/POST/PUT/DELETE) for each service.
+Endpoint Catalog: Register API endpoints (GET/POST/PUT/DELETE) per service.
 Real-time Health Checks: Ping endpoints, measure response time, detect UP/DOWN status.
 Health Logs: View full history of health check results per endpoint.
 Analytics Dashboard: SQL-powered insights — total services, average response time, slowest APIs.
@@ -14,7 +14,7 @@ Language	Java (JDK 17+)
 UI	Java Swing
 Database	MySQL
 Connectivity	JDBC
-HTTP Calls	Java HttpURLConnection
+HTTP Calls	Java HttpURLConnection / APIs
 🗄️ Database Schema
 services: id, name, owner, description, status, created_at
 endpoints: id, service_id (FK), url, method
@@ -22,7 +22,7 @@ health_logs: id, endpoint_id (FK), status, status_code, response_time, checked_a
 dependencies: id, service_id (FK), depends_on (FK)
 🚀 Getting Started
 Prerequisites
-Java JDK 17 or above
+Java JDK 17+
 MySQL 8.0+
 MySQL Connector/J JAR
 Steps
@@ -54,7 +54,7 @@ ServiceRegistry/
 └── README.md
 💡 Key Highlights
 4 normalized tables with proper foreign key relationships and CASCADE deletes.
-Prepared statements used throughout to prevent SQL injection.
-SQL aggregates — COUNT, AVG, GROUP BY, JOIN across multiple tables for analytics.
-Multithreaded health checks — HTTP calls run on background thread to keep UI responsive.
+Prepared statements used to prevent SQL injection.
+SQL aggregates: COUNT, AVG, GROUP BY, JOIN across multiple tables for analytics.
+Multithreaded health checks — HTTP calls run on background threads to keep UI responsive.
 Dynamic search — real-time SQL LIKE query filtering as you type.
