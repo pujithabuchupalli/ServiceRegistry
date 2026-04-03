@@ -43,13 +43,6 @@ A developer portal to register, manage, and monitor services and their API endpo
 - MySQL 8.0+  
 - MySQL Connector/J JAR  
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Java JDK 17+  
-- MySQL 8.0+  
-- MySQL Connector/J JAR  
 
 ### Steps
 
